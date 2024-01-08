@@ -14,7 +14,7 @@ body {
     padding: 2vmin;
     border: .2vmin solid black;
     background-color: beige;
-    border-radius: 4vmin
+    border-radius: 4vmin;
 }
 
 .row {
@@ -31,12 +31,14 @@ body {
     border: .2vmin solid black;
     border-radius: 2vmin;
     background-color: white;
+    font-family: Arial;
 }
 
 #display {
     display: flex;
     align-items: center;
     justify-content: right;
+    flex-wrap: wrap;
     padding: 0% 2vmin;
     margin: .5vmin 0%;
     font-size: 5vmin;
@@ -45,4 +47,5 @@ body {
     border-radius: 2vmin;
     height: 10vmin;
     background-color: white;
+    font-family: Arial;
 }

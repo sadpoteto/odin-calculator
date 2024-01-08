@@ -6,6 +6,17 @@ let div = (x,y) => x/y; //JS handles x/0 as NaN already
 let num1;
 let operator;
 let num2; 
+let numDisplay = 0;
+
+let display = document.querySelector("#display");
+
+let numberButtons = document.querySelectorAll(".row > .num");
+numberButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+        numDisplay = parseInt(`${numDisplay}${event.target.getAttribute("id")}`);
+        updateDisplay();
+    });
+});
 
 function operate(x,op,y) {
     switch(op) {
@@ -18,4 +29,8 @@ function operate(x,op,y) {
     case "/":
         return div(parseInt(x), parseInt(y));
     }
+}
+
+function updateDisplay() {
+    display.textContent = numDisplay;
 }

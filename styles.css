@@ -1,11 +1,21 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #container {
+    padding: 10% 0%;
     display: flex;
     flex-wrap: nowrap;
     flex-direction: column;
     justify-content: center;
-    width: 100vw;
-    height: 100vh;
     gap: .5vmin;
+    padding: 2vmin;
+    border: .2vmin solid black;
+    background-color: beige;
+    border-radius: 4vmin
+
 }
 
 .row {
@@ -19,6 +29,6 @@
     width: 10vmin;
     height: 10vmin;
     font-size: 5vmin;
-    border: .2vmin solid slategray;
+    border: .2vmin solid black;
     border-radius: 2vmin;
 }

@@ -30,9 +30,16 @@ body {
     font-size: 5vmin;
     border: .2vmin solid black;
     border-radius: 2vmin;
-    background-color: white;
     font-family: Arial;
     flex: 0 0 1;
+}
+
+.row > .num, .row > .dot {
+    background-color: grey;
+}
+
+.row > .op, .row > .eval {
+    background-color: orange;
 }
 
 .row .clr {

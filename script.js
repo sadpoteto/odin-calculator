@@ -8,14 +8,20 @@ let operator;
 let num2; 
 let numDisplay = 0;
 
-let display = document.querySelector("#display");
-
+let display = document.querySelector("#display-contents");
+let clrButton = document.querySelector("#clr");
 let numberButtons = document.querySelectorAll(".row > .num");
+
 numberButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
         numDisplay = parseInt(`${numDisplay}${event.target.getAttribute("id")}`);
         updateDisplay();
     });
+});
+
+clrButton.addEventListener("click",(event) => {
+    numDisplay = 0;
+    updateDisplay();
 });
 
 function operate(x,op,y) {

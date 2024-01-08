@@ -32,17 +32,28 @@ body {
     border-radius: 2vmin;
     background-color: white;
     font-family: Arial;
+    flex: 0 0 1;
+}
+
+.row .clr {
+    width: 5vmin;
+    height: 5vmin;
+    font-size: 3vmin;
+    border-radius: 1vmin;
+    margin-left: 1vmin;
+    background-color: rgba(255, 0, 0, .5);
+    font-weight: ;
 }
 
 #display {
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: right;
-    flex-wrap: wrap;
     padding: 0% 2vmin;
-    margin: .5vmin 0%;
+    padding-right: 1vmin;
+    margin: 0;
     font-size: 5vmin;
-    justify-self: stretch;
     border: .2vmin solid black;
     border-radius: 2vmin;
     height: 10vmin;

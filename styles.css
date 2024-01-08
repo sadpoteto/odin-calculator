@@ -15,7 +15,6 @@ body {
     border: .2vmin solid black;
     background-color: beige;
     border-radius: 4vmin
-
 }
 
 .row {
@@ -31,4 +30,19 @@ body {
     font-size: 5vmin;
     border: .2vmin solid black;
     border-radius: 2vmin;
+    background-color: white;
+}
+
+#display {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding: 0% 2vmin;
+    margin: .5vmin 0%;
+    font-size: 5vmin;
+    justify-self: stretch;
+    border: .2vmin solid black;
+    border-radius: 2vmin;
+    height: 10vmin;
+    background-color: white;
 }

@@ -1,0 +1,24 @@
+#container {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    gap: .5vmin;
+}
+
+.row {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: .5vmin;
+}
+
+.row > button {
+    width: 10vmin;
+    height: 10vmin;
+    font-size: 5vmin;
+    border: .2vmin solid slategray;
+    border-radius: 2vmin;
+}

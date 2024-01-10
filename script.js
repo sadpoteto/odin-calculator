@@ -4,7 +4,7 @@ let mult = (x,y) => x*y;
 let div = (x,y) => x/y; //JS handles x/0 as NaN already
 
 
-const NUMDISPLAY_DEFAULT = null;
+const NUMDISPLAY_DEFAULT = "";
 const OPERATOR_DEFAULT = null;
 
 const MAX_DIGITS = 12;
@@ -19,15 +19,15 @@ let clrButton = document.querySelector("#clr");
 let numberButtons = document.querySelectorAll(".row > .num");
 let opButtons = document.querySelectorAll(".row > .op");
 let evalButton = document.querySelector(".row > .eval");
+let dotbutton = document.querySelector(".row > .dot");
 
 numberButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
-        switch(numDisplay == NUMDISPLAY_DEFAULT) {
+        switch(numDisplay == NUMDISPLAY_DEFAULT || isNaN(numDisplay) || isInfinite(numDisplay)) {
         case true: 
             numDisplay = event.target.getAttribute("id");
             break;
         case false:
-            numDisplay = isNaN(numDisplay) ? event.target.getAttribute("id") : numDisplay;
             numDisplay = `${numDisplay}${event.target.getAttribute("id")}`;
             numDisplay = numDisplay.slice(0, MAX_DIGITS - 1);
             break;
@@ -39,6 +39,11 @@ numberButtons.forEach((button) => {
 opButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
         parseOperation();
+        if(numDisplay == NUMDISPLAY_DEFAULT && operator == OPERATOR_DEFAULT && event.target.getAttribute("id") == "-") {
+            numDisplay = "-";
+            console.log("hey")
+            updateDisplay();
+        }
         operator = event.target.getAttribute("id");
         num2 = null;
         numDisplay = NUMDISPLAY_DEFAULT;
@@ -49,6 +54,17 @@ evalButton.addEventListener("click", (event) => {
     parseOperation();
     operator = OPERATOR_DEFAULT;
 });
+
+dotbutton.addEventListener("click", (event) => {
+    switch(numDisplay == NUMDISPLAY_DEFAULT || isNaN(numDisplay) || isInfinite(numDisplay)) {
+    case true:
+        numDisplay = "0.";
+        break;
+    case false:
+        numDisplay = numDisplay.concat(numDisplay.includes(".") ? "" : ".");
+    }
+    updateDisplay();
+})
 
 clrButton.addEventListener("click",(event) => {
     numDisplay = NUMDISPLAY_DEFAULT;
@@ -72,6 +88,10 @@ function operate(x,op,y) {
         return div(x, y);
     }
     return null;
+}
+
+function isInfinite(x) {
+    return !isFinite(parseFloat(x)) && !isNaN(parseFloat(x));
 }
 
 function parseOperation() {
@@ -110,15 +130,13 @@ function displayResults() {
 
 function updateDisplay() {
     display.style.fontSize = "5vmin";
+    if(isInfinite(numDisplay)) {
+        handleInfinity();
+        return;
+    }
     switch(numDisplay) {
     case NUMDISPLAY_DEFAULT:
         display.textContent = 0;
-        break;
-    case Infinity:
-        handleInfinity();
-        break;
-    case -Infinity:
-        handleInfinity();
         break;
     default: 
         display.textContent = numDisplay;

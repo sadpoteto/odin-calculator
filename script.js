@@ -26,8 +26,10 @@ numberButtons.forEach((button) => {
         case true: 
             numDisplay = event.target.getAttribute("id");
             break;
-        case false: 
+        case false:
+            numDisplay = isNaN(numDisplay) ? event.target.getAttribute("id") : numDisplay;
             numDisplay = `${numDisplay}${event.target.getAttribute("id")}`;
+            numDisplay = numDisplay.slice(0, MAX_DIGITS - 1);
             break;
         }
         updateDisplay();
@@ -94,9 +96,15 @@ function handleInfinity() {
 }
 
 function displayResults() {
-    let maxPrecision = MAX_DIGITS - Math.floor(Math.log10(numDisplay));
-    maxPrecision = maxPrecision > 0 ? maxPrecision : 0;
-    numDisplay = Number(parseFloat(numDisplay).toFixed(maxPrecision));
+    let digitsBeforeDec = Math.floor(Math.log10(parseFloat(numDisplay)));
+    if(digitsBeforeDec > MAX_DIGITS || digitsBeforeDec < -MAX_DIGITS + 1) {
+        numDisplay = parseFloat(numDisplay).toExponential(MAX_DIGITS - 4 - (1 + Math.floor(Math.log10(digitsBeforeDec))));
+        // 1.23E+5 => 2 precision gives 4 chars + 2 chars after decimals
+        // + chars from exponent
+    }
+    else {
+        numDisplay = Number(parseFloat(numDisplay).toFixed(MAX_DIGITS - Math.max(digitsBeforeDec, 1) - 1));
+    }
     updateDisplay();
 }
 
